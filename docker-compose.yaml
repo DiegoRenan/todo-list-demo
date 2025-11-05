@@ -1,12 +1,14 @@
-version: "3.8"
 services:
   mongodb:
     image: mongo
+    restart: always
     volumes:
       - mongodbdata:/data/db
     env_file:
       - ./env/mongodb.env
     container_name: mongodb
+    ports:
+      - 27017:27017
 
   backend:
     build:
