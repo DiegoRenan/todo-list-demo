@@ -24,6 +24,19 @@ services:
       - mongodb
     container_name: todo-backend
 
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+     - ./frontend/src/:/app/src
+    container_name: todo-frontend
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
 
 volumes:
   mongodbdata:
